@@ -114,24 +114,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="莫非，未经世故的阿良良木同学，对我可爱的私服模样心神荡漾，幸福地看晕了？戦場ヶ原 ひたぎ">
+  <meta name="description" content="注解是干什么的 注解本身不提供作用，注解只能是被看作元数据，它不包含任何业务逻辑。注解更像是一个标签，一个声明，表面被注释的这个地方，将具有某种特定的逻辑。 注解常见的种类 常见的注解有三大类：JDK的，自定义的，第三方的（比如框架） 注解三板斧 定义、使用、读取 定义：包括名字，能用到哪些地方，有效期，是否可以被继承 使用：定义好之后在允许的地方使用标注即可 光有前两步，没什么用，如最熟悉的@O">
 <meta property="og:type" content="article">
-<meta property="og:title" content="戦場ヶ原">
-<meta property="og:url" content="http://example.com/2022/01/01/hello-world/index.html">
+<meta property="og:title" content="Java中的注解">
+<meta property="og:url" content="http://example.com/2021/10/12/java-zhu-jie/index.html">
 <meta property="og:site_name" content="蕩漾">
-<meta property="og:description" content="莫非，未经世故的阿良良木同学，对我可爱的私服模样心神荡漾，幸福地看晕了？戦場ヶ原 ひたぎ">
+<meta property="og:description" content="注解是干什么的 注解本身不提供作用，注解只能是被看作元数据，它不包含任何业务逻辑。注解更像是一个标签，一个声明，表面被注释的这个地方，将具有某种特定的逻辑。 注解常见的种类 常见的注解有三大类：JDK的，自定义的，第三方的（比如框架） 注解三板斧 定义、使用、读取 定义：包括名字，能用到哪些地方，有效期，是否可以被继承 使用：定义好之后在允许的地方使用标注即可 光有前两步，没什么用，如最熟悉的@O">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/DangY.jpg">
-<meta property="article:published_time" content="2021-12-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-01-31T14:31:32.242Z">
+<meta property="article:published_time" content="2021-10-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-09T07:36:26.692Z">
 <meta property="article:author" content="羽生绯木">
-<meta property="article:tag" content="物語">
-<meta property="article:tag" content="アニメ">
-<meta property="article:tag" content="戦場ヶ原">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/DangY.jpg">
 
-<link rel="canonical" href="http://example.com/2022/01/01/hello-world/">
+<link rel="canonical" href="http://example.com/2021/10/12/java-zhu-jie/">
 
 
 <script id="page-configurations">
@@ -144,7 +140,7 @@
   };
 </script>
 
-  <title>戦場ヶ原 | 蕩漾</title>
+  <title>Java中的注解 | 蕩漾</title>
   
 
 
@@ -294,7 +290,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/01/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/12/java-zhu-jie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -307,7 +303,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          戦場ヶ原
+          Java中的注解
         </h1>
 
         <div class="post-meta">
@@ -317,14 +313,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-01T00:00:00+08:00">2022-01-01</time>
+              <time title="创建时间：2021-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-12T00:00:00+08:00">2021-10-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-31 22:31:32" itemprop="dateModified" datetime="2023-01-31T22:31:32+08:00">2023-01-31</time>
+                <time title="修改时间：2023-02-09 15:36:26" itemprop="dateModified" datetime="2023-02-09T15:36:26+08:00">2023-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -332,11 +328,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E3%82%A2%E3%83%8B%E3%83%A1/" itemprop="url" rel="index"><span itemprop="name">アニメ</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E3%82%A2%E3%83%8B%E3%83%A1/%E7%89%A9%E8%AA%9E%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/" itemprop="url" rel="index"><span itemprop="name">物語シリーズ</span></a>
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
                 </span>
             </span>
 
@@ -353,7 +345,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>866</span>
+              <span>797</span>
             </span>
 
         </div>
@@ -367,22 +359,61 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr><blockquote class="blockquote-center"><p>莫非，未经世故的阿良良木同学，<br>对我可爱的私服模样心神荡漾，幸福地看晕了？</p><p>戦場ヶ原 ひたぎ</p></blockquote><hr>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 65%;">
-<img src=https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/Hallo.jpg />
-</div>
-<span id="more"></span>
+        <p><strong>注解是干什么的</strong></p>
+<p>注解本身不提供作用，注解只能是被看作元数据，它不包含任何业务逻辑。注解更像是一个标签，一个声明，表面被注释的这个地方，将具有某种特定的逻辑。</p>
+<p><strong>注解常见的种类</strong></p>
+<p>常见的注解有三大类：JDK的，自定义的，第三方的（比如框架）</p>
+<p><strong>注解三板斧</strong></p>
+<p>定义、使用、读取</p>
+<p>定义：包括名字，能用到哪些地方，有效期，是否可以被继承</p>
+<p>使用：定义好之后在允许的地方使用标注即可</p>
+<p>光有前两步，没什么用，如最熟悉的@Override注解，为什么能验证重写是否有效，怎么不是验证重载？spring的@Autowired为什么是注入作用，而不是输出一句话？显然，他们在程序中做了实现，使得其注解具有各自的作用，也具有了意义，而赋予灵魂的一步就是读取</p>
+<p>读取：让注解发挥作用，给注解注入灵魂</p>
+<p><strong>注解前置知识</strong></p>
+<p>首先是元注解，Java中提供了四个</p>
+<p>@Documented | @Retention | @Target | @Inherited</p>
+<p>分别解释下</p>
+<p>@Documented</p>
+<blockquote>
+<p>代表着此注解会被javadoc工具提取成文档</p>
+</blockquote>
+<p>@Retention：</p>
+<blockquote>
+<p>代表该注解的有效期</p>
+<p>SOURCE 表示编译期，如@Override，只做编译时的提示，不会写入字节码中。</p>
+<p>CLASS表示类加载期，会保存在class文件中，但在运行class文件被丢弃，也是默认值</p>
+<p>RUNTIME 表示运行期，也是最常用的，可以在代码运行时进行反射执行相关的操作</p>
+</blockquote>
+<p>@Target：</p>
+<blockquote>
+<p>表示这个注解可以放在哪</p>
+<p>TYPE：接口、类、枚举、注解</p>
+<p>FIELD：字段、枚举的常量</p>
+<p>METHOD：方法</p>
+<p>PARAMETER：参数</p>
+<p>CONSTRUCTOR：构造函数</p>
+<p>LOCAL_VARIABLE：局部变量</p>
+<p>ANNOTATION_TYPE：注解</p>
+<p>PACKAGE：包</p>
+</blockquote>
+<p>@Inherited：</p>
+<blockquote>
+<p>表示子类可以继承该类的注解</p>
+</blockquote>
+<p>举个例子<br>自己自定义个注解，并赋予它作用，模拟aop功能，在方法前后加入</p>
+<p>定义注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法前执行</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyBefore &#123;&#125;</span><br><span class="line"><span class="comment">//主要方法</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyCore &#123;&#125;</span><br><span class="line"><span class="comment">//方法后执行</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAfter &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="战场原黑仪-（日语：戦場ヶ原-ひたぎ"><a href="#战场原黑仪-（日语：戦場ヶ原-ひたぎ" class="headerlink" title="战场原黑仪 （日语：戦場ヶ原 ひたぎ)"></a><strong>战场原黑仪</strong> （日语：<strong>戦場ヶ原 ひたぎ</strong>)</h4><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=520 height=86 src="//music.163.com/outchain/player?type=2&id=460638&auto=0&height=66"></iframe>
+<p>使用注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="meta">@MyBefore</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;初始化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@MyAfter</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@MyCore</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">core</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;核心方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>傲娇<strong>毒舌</strong>父控，男主人公阿良良木历的<strong>女朋友</strong>.公认的“傲娇”角色,阿良良木历认为她是“冷傲”,非常毒舌，自称其”暴言”是用“铜四十公克、锌二十五克、镍十五公克、腼腆五公克，再加上九十七公斤的恶意”提炼出来的。经常对历使用毒舌谩骂的“言语暴力”，但这好像恰恰是她的示爱表现。历认为她是“诱受型的角色”，即故意说一些话，引诱对方做出自己期待反应的角色。<br>最强武器是<del>暴言</del>订书机，曾用其订伤垃圾君。<br>自我意识强烈的高中女生，强烈的警戒心以及高度的防卫意识与过度的攻击意识，而且是遇到挑衅会先发制人直接还击的类型。战场原的喜怒哀乐不形于色，声音也同样不带任何感情。她不管说什么，语调几乎都是四平八稳。</p>
-<h4 id="重生"><a href="#重生" class="headerlink" title="重生"></a>重生</h4><p>《伪物语》中，战场原借由和贝木泥舟的对决，同自己的往事诀别，消除了自己身上所有的怪异因素。经过非常彻底的重生，不再偏激，不走极端，不会莫名具有攻击性，会对正常的事情做出正常的反应，完完全全成了一个温柔可爱的平凡女高中生、容易害羞的女孩子。不仅表情丰富，还带着幽默感，而且最重要的是，她变得经常会展露笑容了。但是她那“毒舌时代”的残渣还是会时不时渗透出来。 </p>
-<p>为了跟自己的过去做一个了断，战场原还将从小学期就保持着的长长的黑色（动画中表现为紫色）直发剪成了一头清爽<strong>短发</strong>，曾经一直线的刘海也变成了蓬松的波浪形。如果说把双脚裸露出来，那宁可砍掉也是过去的事情了，裙子的下摆变短了<del>绝对领域</del>，对于肌肤裸露也不再那么抗拒。原先在她身上的那种“大家闺秀”的氛围也消失得无影无踪。</p>
-<h4 id="在5月14日母亲节那天向历告白："><a href="#在5月14日母亲节那天向历告白：" class="headerlink" title="在5月14日母亲节那天向历告白："></a><strong>在5月14日母亲节那天向历告白</strong>：</h4><p><video src='https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/Love.mp4'     controls='controls'  preload="auto"  width='70%'  height='70%' preload='preload' ></video></p>
-<p>战场原不是那种会把恩情和爱情混为一谈的人，喜欢历不是因为历帮助了自己，而因为历“对谁都很温柔”的性格。深爱着历，甚至“<strong>深爱到即使你全身沾满秽物，我也会毫不犹豫拥抱你</strong>”的程度。曾宣称“要是阿良良木被我以外的人杀死，我会去杀掉那个犯人”的程度。“翼猫”章中，在和历的第一次约会中与历接吻，为此还在凌晨给神原骏河打电话向她炫耀了五个多小时。</p>
-<p><img src="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/DangY.jpg"></p>
-<p>　　</p>
-<p>　　</p>
+<p>前两步简单，重要的是如何赋予注解作用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyWork</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">//获得测试类</span></span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Test.class;</span><br><span class="line">        <span class="comment">//获得一个实例</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> clazz.newInstance();</span><br><span class="line">        <span class="comment">//获得Test的所有public方法，将他们存入对应的集合中</span></span><br><span class="line">        List&lt;Method&gt; myBeforeList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;Method&gt; myAfterList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;Method&gt; myTestList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        Method[] methods = clazz.getMethods();</span><br><span class="line">        <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(MyBefore.class)) &#123;</span><br><span class="line">                myBeforeList.add(method);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(MyCore.class)) &#123;</span><br><span class="line">                myTestList.add(method);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(MyAfter.class)) &#123;</span><br><span class="line">                myAfterList.add(method);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//调用标有MyTest注解的方法</span></span><br><span class="line">        <span class="keyword">for</span> (Method test : myTestList) &#123;</span><br><span class="line">            <span class="comment">//在测试方法前先执行标有MyBefore注解的方法</span></span><br><span class="line">            <span class="keyword">for</span> (Method method : myBeforeList) &#123;</span><br><span class="line">                method.invoke(obj);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//调用test方法</span></span><br><span class="line">            test.invoke(obj);</span><br><span class="line">            <span class="comment">//在测试方法后执行标有MyAfter注解的方法</span></span><br><span class="line">            <span class="keyword">for</span> (Method method : myAfterList) &#123;</span><br><span class="line">                method.invoke(obj);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<blockquote>
+<p>初始化<br>核心方法<br>销毁</p>
+</blockquote>
 
     </div>
 
@@ -402,9 +433,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%89%A9%E8%AA%9E/" rel="tag"># 物語</a>
-              <a href="/tags/%E3%82%A2%E3%83%8B%E3%83%A1/" rel="tag"># アニメ</a>
-              <a href="/tags/%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F/" rel="tag"># 戦場ヶ原</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
           </div>
 
         
@@ -412,13 +441,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/10/12/java-zhu-jie/" rel="prev" title="Java中的注解">
-      <i class="fa fa-chevron-left"></i> Java中的注解
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/11/11/hexo/" rel="next" title="我与我">
-      我与我 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/01/01/hello-world/" rel="next" title="戦場ヶ原">
+      戦場ヶ原 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -479,7 +505,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%98%E5%9C%BA%E5%8E%9F%E9%BB%91%E4%BB%AA-%EF%BC%88%E6%97%A5%E8%AF%AD%EF%BC%9A%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F-%E3%81%B2%E3%81%9F%E3%81%8E"><span class="nav-number">1.</span> <span class="nav-text">战场原黑仪 （日语：戦場ヶ原 ひたぎ)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text">重生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A85%E6%9C%8814%E6%97%A5%E6%AF%8D%E4%BA%B2%E8%8A%82%E9%82%A3%E5%A4%A9%E5%90%91%E5%8E%86%E5%91%8A%E7%99%BD%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">在5月14日母亲节那天向历告白：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
