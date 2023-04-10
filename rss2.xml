@@ -81,7 +81,9 @@
       <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="MySQL-的事务隔离级别有哪些？分别用于解决什么问题？"><a href="#MySQL-的事务隔离级别有哪些？分别用于解决什么问题？" class="headerlink" title="MySQL 的事务隔离级别有哪些？分别用于解决什么问题？"></a>MySQL 的事务隔离级别有哪些？分别用于解决什么问题？</h1><p>主要用于解决脏读、不可重复读、幻读。</p><p>脏读：一个事务读取到另一个事务还未提交的数据。</p><p>不可重复读：在一个事务中多次读取同一个数据时，结果出现不一致。</p><p>幻读：在一个事务中使用相同的 SQL 两次读取，第二次读取到了其他事务新插入的行。</p><p>不可重复读注重于数据的修改，而幻读注重于数据的插入。</p><span id="more"></span><table><thead><tr><th>隔离级别</th><th>脏读</th><th>不可重复读</th><th>幻读</th></tr></thead><tbody><tr><td>读未提交（Read Uncommitted）</td><td>有</td><td>有</td><td>有</td></tr><tr><td>读已提交（Read Committed）</td><td>无</td><td>有</td><td>有</td></tr><tr><td>可重复读（Repeatable Read）</td><td>无</td><td>无</td><td>有</td></tr><tr><td>串行化（Serializable）</td><td>无</td><td>无</td><td>无</td></tr></tbody></table><h1 id="MySQL-的可重复读怎么实现的？"><a href="#MySQL-的可重复读怎么实现的？" class="headerlink" title="MySQL 的可重复读怎么实现的？"></a>MySQL 的可重复读怎么实现的？</h1><p>使用 MVCC 实现的，即 Mutil-Version Concurrency Control，多版本并发控制。关于 MVCC，比较常见的说法如下，包括《高性能 MySQL》也是这么介绍的。</p><p>InnoDB 在每行记录后面保存两个隐藏的列，分别保存了数据行的创建版本号和删除版本号。每开始一个新的事务，系统版本号都会递增。事务开始时刻的版本号会作为事务的版本号，用来和查询到的每行记录的版本号对比。在可重复读级别下，MVCC是如何操作的：</p><p>SELECT：必须同时满足以下两个条件，才能查询到。1）只查版本号早于当前版本的数据行；2）行的删除版本要么未定义，要么大于当前事务版本号。</p><p>INSERT：为插入的每一行保存当前系统版本号作为创建版本号。</p><p>DELETE：为删除的每一行保存当前系统版本号作为删除版本号。</p><p>UPDATE：插入一条新数据，保存当前系统版本号作为创建版本号。同时保存当前系统版本号作为原来的数据行删除版本号。</p><p>MVCC 只作用于 RC（Read Committed）和 RR（Repeatable Read）级别，因为 RU（Read Uncommitted）总是读取最新的数据版本，而不是符合当前事务版本的数据行。而 Serializable 则会对所有读取的行都加锁。这两种级别都不需要 MVCC 的帮助。</p><h1 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h1><p>MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获取数据的数据结构。简单的理解，索引类似于字典里面的目录。</p><p>常见的索引类型有：hash、b树、b+树。</p><p>hash：底层就是 hash 表。进行查找时，根据 key 调用hash 函数获得对应的 hashcode，根据 hashcode 找到对应的数据行地址，根据地址拿到对应的数据。</p><p>B树：B树是一种多路搜索树，n 路搜索树代表每个节点最多有 n 个子节点。每个节点存储 key + 指向下一层节点的指针+ 指向 key 数据记录的地址。查找时，从根结点向下进行查找，直到找到对应的key。</p><p>B+树：B+树是b树的变种，主要区别在于：B+树的非叶子节点只存储 key + 指向下一层节点的指针。另外，B+树的叶子节点之间通过指针来连接，构成一个有序链表，因此对整棵树的遍历只需要一次线性遍历叶子结点即可。</p><h1 id="为什么MySQL数据库要用B-树存储索引？而不用红黑树、Hash、B树？"><a href="#为什么MySQL数据库要用B-树存储索引？而不用红黑树、Hash、B树？" class="headerlink" title="为什么MySQL数据库要用B+树存储索引？而不用红黑树、Hash、B树？"></a>为什么MySQL数据库要用B+树存储索引？而不用红黑树、Hash、B树？</h1><p>红黑树：如果在内存中，红黑树的查找效率比B树更高，但是涉及到磁盘操作，B树就更优了。因为红黑树是二叉树，数据量大时树的层数很高，从树的根结点向下寻找的过程，每读1个节点，都相当于一次IO操作，因此红黑树的I&#x2F;O操作会比B树多的多。</p><p>hash 索引：如果只查询单个值的话，hash 索引的效率非常高。但是 hash 索引有几个问题：</p><ol><li>不支持范围查询；</li><li>不支持索引值的排序操作；</li><li>不支持联合索引的最左匹配规则。</li></ol><p>B树索引：B树索相比于B+树，在进行范围查询时，需要做局部的中序遍历，可能要跨层访问，跨层访问代表着要进行额外的磁盘I&#x2F;O操作；另外，B树的非叶子节点存放了数据记录的地址，会导致存放的节点更少，树的层数变高。</p><h1 id="MySQL-中的索引叶子节点存放的是什么？"><a href="#MySQL-中的索引叶子节点存放的是什么？" class="headerlink" title="MySQL 中的索引叶子节点存放的是什么？"></a>MySQL 中的索引叶子节点存放的是什么？</h1><p>MyISAM和InnoDB都是采用的B+树作为索引结构，但是叶子节点的存储上有些不同。</p><p>MyISAM：主键索引和辅助索引（普通索引）的叶子节点都是存放 key 和 key 对应数据行的地址。在MyISAM 中，主键索引和辅助索引没有任何区别。</p><p>InnoDB：主键索引存放的是 key 和 key 对应的数据行。辅助索引存放的是 key 和 key 对应的主键值。因此在使用辅助索引时，通常需要检索两次索引，首先检索辅助索引获得主键值，然后用主键值到主键索引中检索获得记录。</p><h1 id="什么是聚簇索引（聚集索引）？"><a href="#什么是聚簇索引（聚集索引）？" class="headerlink" title="什么是聚簇索引（聚集索引）？"></a>什么是聚簇索引（聚集索引）？</h1><p>聚簇索引并不是一种单独的索引类型，而是一种数据存储方式。聚簇索引将索引和数据行放到了一块，找到索引也就找到了数据。因为无需进行回表操作，所以效率很高。</p><p>InnoDB 中必然会有，且只会有一个聚簇索引。通常是主键，如果没有主键，则优先选择非空的唯一索引，如果唯一索引也没有，则会创建一个隐藏的row_id 作为聚簇索引。至于为啥会只有一个聚簇索引，其实很简单，因为我们的数据只会存储一份。</p><p>而非聚簇索引则将数据存储和索引分开，找到索引后，需要通过对应的地址找到对应的数据行。MyISAM 的索引方式就是非聚簇索引。</p><h1 id="什么是回表查询？"><a href="#什么是回表查询？" class="headerlink" title="什么是回表查询？"></a>什么是回表查询？</h1><p>InnoDB 中，对于主键索引，只需要走一遍主键索引的查询就能在叶子节点拿到数据。</p><p>而对于普通索引，叶子节点存储的是 key + 主键值，因此需要再走一次主键索引，通过主键索引找到行记录，这就是所谓的回表查询，先定位主键值，再定位行记录。</p><h1 id="走普通索引，一定会出现回表查询吗？"><a href="#走普通索引，一定会出现回表查询吗？" class="headerlink" title="走普通索引，一定会出现回表查询吗？"></a>走普通索引，一定会出现回表查询吗？</h1><p>不一定，如果查询语句所要求的字段全部命中了索引，那么就不必再进行回表查询。</p><p>很容易理解，有一个 user 表，主键为 id，name 为普通索引，则再执行：select id, name from user where name &#x3D; ‘joonwhee’ 时，通过name 的索引就能拿到 id 和 name了，因此无需再回表去查数据行了。</p><h1 id="什么是覆盖索引（索引覆盖）吗？"><a href="#什么是覆盖索引（索引覆盖）吗？" class="headerlink" title="什么是覆盖索引（索引覆盖）吗？"></a>什么是覆盖索引（索引覆盖）吗？</h1><p>覆盖索引是 SQL-Server 中的一种说法，上面讲的例子其实就实现了覆盖索引。具体的：当索引上包含了查询语句中的所有列时，我们无需进行回表查询就能拿到所有的请求数据，因此速度会很快。</p>]]></content:encoded>
       
       
-      <category domain="http://example.com/categories/%E9%9D%A2%E8%AF%95/">面试</category>
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
+      
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1/">面试八股</category>
       
       
       <category domain="http://example.com/tags/Java/">Java</category>
@@ -110,7 +112,9 @@
       <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="为什么要使用线程池？直接new个线程不是很舒服？"><a href="#为什么要使用线程池？直接new个线程不是很舒服？" class="headerlink" title="为什么要使用线程池？直接new个线程不是很舒服？"></a>为什么要使用线程池？直接new个线程不是很舒服？</h1><p>使用线程池可以带来以下几个好处：</p><ol><li><p>降低资源消耗。通过重复利用已创建的线程，降低线程创建和销毁造成的消耗。</p></li><li><p>提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。</p></li><li><p>增加线程的可管理型。线程是稀缺资源，使用线程池可以进行统一分配，调优和监控。</p><span id="more"></span></li></ol><h1 id="线程池的核心属性有哪些？"><a href="#线程池的核心属性有哪些？" class="headerlink" title="线程池的核心属性有哪些？"></a>线程池的核心属性有哪些？</h1><p>threadFactory（线程工厂）：用于创建工作线程的工厂。</p><p>corePoolSize（核心线程数）：当线程池运行的线程少于 corePoolSize 时，将创建一个新线程来处理请求，即使其他工作线程处于空闲状态。</p><p>workQueue（队列）：用于保留任务并移交给工作线程的阻塞队列。</p><p>maximumPoolSize（最大线程数）：线程池允许开启的最大线程数。</p><p>handler（拒绝策略）：往线程池添加任务时，将在下面两种情况触发拒绝策略：1）线程池运行状态不是 RUNNING；2）线程池已经达到最大线程数，并且阻塞队列已满时。</p><p>keepAliveTime（保持存活时间）：如果线程池当前线程数超过 corePoolSize，则多余的线程空闲时间超过 keepAliveTime 时会被终止。</p><h1 id="线程池中的各个状态分别代表什么含义？"><a href="#线程池中的各个状态分别代表什么含义？" class="headerlink" title="线程池中的各个状态分别代表什么含义？"></a>线程池中的各个状态分别代表什么含义？</h1><p>线程池目前有5个状态：</p><p>RUNNING：接受新任务并处理排队的任务。</p><p>SHUTDOWN：不接受新任务，但处理排队的任务。</p><p>STOP：不接受新任务，不处理排队的任务，并中断正在进行的任务。</p><p>TIDYING：所有任务都已终止，workerCount 为零，线程转换到 TIDYING 状态将运行 terminated() 钩子方法。</p><p>TERMINATED：terminated() 已完成。</p><p><img src="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/aHR0cHM6Ly9tbWJpei5xcGljLmNuL3N6X21tYml6X3BuZy9LUlJ4dnFHY2ljWkh6RlM2UE9nNlRnaWNpY3Y1SU10TGliV2pHODFzOHF1TFByWWw.png"></p><h1 id="使用队列有什么需要注意的吗？"><a href="#使用队列有什么需要注意的吗？" class="headerlink" title="使用队列有什么需要注意的吗？"></a>使用队列有什么需要注意的吗？</h1><p>使用有界队列时，需要注意线程池满了后，被拒绝的任务如何处理。</p><p>使用无界队列时，需要注意如果任务的提交速度大于线程池的处理速度，可能会导致内存溢出。</p><h1 id="线程池有哪些拒绝策略？"><a href="#线程池有哪些拒绝策略？" class="headerlink" title="线程池有哪些拒绝策略？"></a>线程池有哪些拒绝策略？</h1><p>常见的有以下几种：</p><p>AbortPolicy：中止策略。默认的拒绝策略，直接抛出 RejectedExecutionException。调用者可以捕获这个异常，然后根据需求编写自己的处理代码。</p><p>DiscardPolicy：抛弃策略。什么都不做，直接抛弃被拒绝的任务。</p><p>DiscardOldestPolicy：抛弃最老策略。抛弃阻塞队列中最老的任务，相当于就是队列中下一个将要被执行的任务，然后重新提交被拒绝的任务。如果阻塞队列是一个优先队列，那么“抛弃最旧的”策略将导致抛弃优先级最高的任务，因此最好不要将该策略和优先级队列放在一起使用。</p><p>CallerRunsPolicy：调用者运行策略。在调用者线程中执行该任务。该策略实现了一种调节机制，该策略既不会抛弃任务，也不会抛出异常，而是将任务回退到调用者（调用线程池执行任务的主线程），由于执行任务需要一定时间，因此主线程至少在一段时间内不能提交任务，从而使得线程池有时间来处理完正在执行的任务。</p><h1 id="如何终止线程池？"><a href="#如何终止线程池？" class="headerlink" title="如何终止线程池？"></a>如何终止线程池？</h1><p>终止线程池主要有两种方式：</p><p>shutdown：“温柔”的关闭线程池。不接受新任务，但是在关闭前会将之前提交的任务处理完毕。</p><p>shutdownNow：“粗暴”的关闭线程池，也就是直接关闭线程池，通过 Thread#interrupt() 方法终止所有线程，不会等待之前提交的任务执行完毕。但是会返回队列中未处理的任务。</p><h1 id="Executors-提供了哪些创建线程池的方法？"><a href="#Executors-提供了哪些创建线程池的方法？" class="headerlink" title="Executors 提供了哪些创建线程池的方法？"></a>Executors 提供了哪些创建线程池的方法？</h1><p>newFixedThreadPool：固定线程数的线程池。corePoolSize &#x3D; maximumPoolSize，keepAliveTime为0，工作队列使用无界的LinkedBlockingQueue。适用于为了满足资源管理的需求，而需要限制当前线程数量的场景，适用于负载比较重的服务器。</p><p>newSingleThreadExecutor：只有一个线程的线程池。corePoolSize &#x3D; maximumPoolSize &#x3D; 1，keepAliveTime为0， 工作队列使用无界的LinkedBlockingQueue。适用于需要保证顺序的执行各个任务的场景。</p><p>newCachedThreadPool： 按需要创建新线程的线程池。核心线程数为0，最大线程数为 Integer.MAX_VALUE，keepAliveTime为60秒，工作队列使用同步移交 SynchronousQueue。该线程池可以无限扩展，当需求增加时，可以添加新的线程，而当需求降低时会自动回收空闲线程。适用于执行很多的短期异步任务，或者是负载较轻的服务器。</p><p>newScheduledThreadPool：创建一个以延迟或定时的方式来执行任务的线程池，工作队列为 DelayedWorkQueue。适用于需要多个后台线程执行周期任务。</p><p>newWorkStealingPool：JDK 1.8 新增，用于创建一个可以窃取的线程池，底层使用 ForkJoinPool 实现。</p><h1 id="在我们实际使用中，线程池的大小配置多少合适？"><a href="#在我们实际使用中，线程池的大小配置多少合适？" class="headerlink" title="在我们实际使用中，线程池的大小配置多少合适？"></a>在我们实际使用中，线程池的大小配置多少合适？</h1><p>要想合理的配置线程池大小，首先我们需要区分任务是计算密集型还是I&#x2F;O密集型。</p><p>对于计算密集型，设置 线程数 &#x3D; CPU数 + 1，通常能实现最优的利用率。</p><p>对于I&#x2F;O密集型，网上常见的说法是设置 线程数 &#x3D; CPU数 * 2 ，这个做法是可以的，但个人觉得不是最优的。</p><p>在我们日常的开发中，我们的任务几乎是离不开I&#x2F;O的，常见的网络I&#x2F;O（RPC调用）、磁盘I&#x2F;O（数据库操作），并且I&#x2F;O的等待时间通常会占整个任务处理时间的很大一部分，在这种情况下，开启更多的线程可以让 CPU 得到更充分的使用，一个较合理的计算公式如下：</p><p>线程数 &#x3D; CPU数 * CPU利用率 * (任务等待时间 &#x2F; 任务计算时间 + 1)</p><p>例如我们有个定时任务，部署在4核的服务器上，该任务有100ms在计算，900ms在I&#x2F;O等待，则线程数约为：4 * 1 * (1 + 900 &#x2F; 100) &#x3D; 40个。</p>]]></content:encoded>
       
       
-      <category domain="http://example.com/categories/%E9%9D%A2%E8%AF%95/">面试</category>
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
+      
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1/">面试八股</category>
       
       
       <category domain="http://example.com/tags/Java/">Java</category>
@@ -136,9 +140,9 @@
       <category domain="http://example.com/categories/English/">English</category>
       
       
-      <category domain="http://example.com/tags/%E8%8B%B1%E8%AF%AD/">英语</category>
-      
       <category domain="http://example.com/tags/%E6%B5%8B%E8%AF%95/">测试</category>
+      
+      <category domain="http://example.com/tags/%E8%8B%B1%E8%AF%AD/">英语</category>
       
       
       <comments>http://example.com/2023/xue-wei-ying-yu-kao-bi-ji/#disqus_thread</comments>
@@ -146,9 +150,9 @@
     </item>
     
     <item>
-      <title>数据结构</title>
-      <link>http://example.com/2023/shu-ju-jie-gou/</link>
-      <guid>http://example.com/2023/shu-ju-jie-gou/</guid>
+      <title>Python</title>
+      <link>http://example.com/2023/pythonday01/</link>
+      <guid>http://example.com/2023/pythonday01/</guid>
       <pubDate>Thu, 19 Jan 2023 16:00:00 GMT</pubDate>
       
         
@@ -161,15 +165,17 @@
       <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content:encoded>
       
       
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
+      <category domain="http://example.com/categories/%E6%B5%8B%E8%AF%95/">测试</category>
       
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</category>
-      
-      
-      <category domain="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</category>
+      <category domain="http://example.com/categories/%E6%B5%8B%E8%AF%95/Python%E6%B5%8B%E8%AF%95/">Python测试</category>
       
       
-      <comments>http://example.com/2023/shu-ju-jie-gou/#disqus_thread</comments>
+      <category domain="http://example.com/tags/Python/">Python</category>
+      
+      <category domain="http://example.com/tags/%E6%B5%8B%E8%AF%95/">测试</category>
+      
+      
+      <comments>http://example.com/2023/pythonday01/#disqus_thread</comments>
       
     </item>
     
@@ -198,7 +204,7 @@
       
       <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
       
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</category>
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</category>
       
       
       <category domain="http://example.com/tags/redis/">redis</category>
@@ -223,7 +229,7 @@
       
       <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
       
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</category>
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/Linux/">Linux</category>
       
       
       <category domain="http://example.com/tags/Linux/">Linux</category>
@@ -255,7 +261,7 @@
       
       <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
       
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</category>
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</category>
       
       
       <category domain="http://example.com/tags/Mysql/">Mysql</category>
@@ -289,7 +295,7 @@
       
       <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
       
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</category>
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/JAVA/">JAVA</category>
       
       
       <category domain="http://example.com/tags/Java/">Java</category>
