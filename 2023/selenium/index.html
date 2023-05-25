@@ -117,18 +117,18 @@
   <meta name="description" content="selenium4.0Selenium 4 已经到来，将至少需要 Python 3.7 或更高版本。 下面介绍一下基础的语法格式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="selenium4.0更新">
-<meta property="og:url" content="http://example.com/2023/ce-shi/index.html">
+<meta property="og:url" content="http://example.com/2023/selenium/index.html">
 <meta property="og:site_name" content="蕩漾">
 <meta property="og:description" content="selenium4.0Selenium 4 已经到来，将至少需要 Python 3.7 或更高版本。 下面介绍一下基础的语法格式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-09T13:59:13.632Z">
+<meta property="article:modified_time" content="2023-04-10T09:40:36.178Z">
 <meta property="article:author" content="羽生绯木">
 <meta property="article:tag" content="测试">
 <meta property="article:tag" content="自动化测试">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/ce-shi/">
+<link rel="canonical" href="http://example.com/2023/selenium/">
 
 
 <script id="page-configurations">
@@ -296,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/ce-shi/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/selenium/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -344,7 +344,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>656</span>
+              <span>219</span>
             </span>
 
         </div>
@@ -364,15 +364,10 @@
 
 <h2 id="1、初始化浏览器、刷新、最大化、后退、前进、截图"><a href="#1、初始化浏览器、刷新、最大化、后退、前进、截图" class="headerlink" title="1、初始化浏览器、刷新、最大化、后退、前进、截图"></a>1、初始化浏览器、刷新、最大化、后退、前进、截图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化浏览器为谷歌浏览器</span></span><br><span class="line"><span class="built_in">chr</span>=webdriver.Chrome()</span><br><span class="line"><span class="comment"># 无界面的浏览器</span></span><br><span class="line"><span class="comment"># option = webdriver.ChromeOptions()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># option.add_argument(&quot;headless&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># chr = webdriver.Chrome(options=option)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#浏览器最大化</span></span><br><span class="line"><span class="built_in">chr</span>.maximize_window()</span><br><span class="line"></span><br><span class="line"><span class="built_in">chr</span>.get(<span class="string">&quot;https://www.baidu.com&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># chr.get(&quot;https://www.jd.com/&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#后退</span></span><br><span class="line"><span class="built_in">chr</span>.back()</span><br><span class="line"><span class="comment">#暂停2s</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#前进</span></span><br><span class="line"><span class="built_in">chr</span>.forward()</span><br><span class="line"><span class="comment">#刷新</span></span><br><span class="line"><span class="built_in">chr</span>.refresh()</span><br><span class="line"><span class="comment">#截图</span></span><br><span class="line"><span class="built_in">chr</span>.get_screenshot_as_file(<span class="string">&#x27;截图.png&#x27;</span>)</span><br><span class="line"><span class="comment">#点击</span></span><br><span class="line"><span class="built_in">chr</span>.find_element(By.ID,<span class="string">&#x27;kw&#x27;</span>).click()</span><br><span class="line"><span class="comment">#输入</span></span><br><span class="line"><span class="built_in">chr</span>.find_element(By.ID,<span class="string">&#x27;kw&#x27;</span>).send_keys(<span class="string">&quot;saa&quot;</span>)</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#清除输入框内容</span></span><br><span class="line"><span class="built_in">chr</span>.find_element(By.ID,<span class="string">&#x27;kw&#x27;</span>).clear()</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#关闭浏览器</span></span><br><span class="line"><span class="built_in">chr</span>.close()</span><br></pre></td></tr></table></figure>
 
-<h2 id="2、单个元素定位的方法"><a href="#2、单个元素定位的方法" class="headerlink" title="2、单个元素定位的方法"></a>2、单个元素定位的方法</h2><p>selenium4使用的时候需要导入模块    from selenium.webdriver.common.by import By</p>
-<p>find_element(By.XPATH, “&#x2F;&#x2F;*[@id&#x3D;’search’]”)</p>
-<p>find_element(By.CLASS_NAME, “element_class_name”)</p>
-<p>find_element(By.ID,”element_id”)</p>
-<p>find_element(By.NAME, “element_name”)</p>
-<p>find_element(By.LINK_TEXT,”element_link_text”)</p>
-<p>find_element(By.CSS_SELECTOR, “element_css_selector”)</p>
-<p>find_element(By.TAG_NAME, “element_tag_name”)</p>
-<p>find_element(By.PARTIAL_LINK_TEXT, “element_partial_link_text”)</p>
+<h2 id="2、单个元素定位的方法"><a href="#2、单个元素定位的方法" class="headerlink" title="2、单个元素定位的方法"></a>2、单个元素定位的方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">selenium4使用的时候需要导入模块    <span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line">find_element(By.XPATH, <span class="string">&quot;//*[@id=&#x27;search&#x27;]&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.CLASS_NAME, <span class="string">&quot;element_class_name&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.ID,<span class="string">&quot;element_id&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.NAME, <span class="string">&quot;element_name&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.LINK_TEXT,<span class="string">&quot;element_link_text&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.CSS_SELECTOR, <span class="string">&quot;element_css_selector&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.TAG_NAME, <span class="string">&quot;element_tag_name&quot;</span>)</span><br><span class="line"></span><br><span class="line">find_element(By.PARTIAL_LINK_TEXT, <span class="string">&quot;element_partial_link_text&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="3、多个元素定位的方法"><a href="#3、多个元素定位的方法" class="headerlink" title="3、多个元素定位的方法"></a>3、多个元素定位的方法</h2><p>与单个元素的定位方式类似，把find_element改成find_elements即可</p>
 <h2 id="4、定位select类型的下拉框"><a href="#4、定位select类型的下拉框" class="headerlink" title="4、定位select类型的下拉框"></a>4、定位select类型的下拉框</h2><p>4、定位select类型的下拉框</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select_by_index()           <span class="comment"># 通过索引定位；注意：&gt;index索引是从“0”开始。</span></span><br><span class="line">select_by_value()           <span class="comment"># 通过value值定位，va&gt;lue标签的属性值。</span></span><br><span class="line">select_by_visible_text()    <span class="comment"># 通过文本值定位，即显&gt;示在下拉框的值。</span></span><br><span class="line">Select(<span class="built_in">chr</span>.find_element_by_name(<span class="string">&quot;姓名&quot;</span>)).select_by_index(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
@@ -427,7 +422,10 @@
     <a href="/2023/mei-tuan-bi-shi/" rel="prev" title="美团笔试3.18后端">
       <i class="fa fa-chevron-left"></i> 美团笔试3.18后端
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/ke-le-ji-chi/" rel="next" title="可乐鸡翅">
+      可乐鸡翅 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -582,7 +580,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">76k</span>
+    <span title="站点总字数">78k</span>
 </div>
 <!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
