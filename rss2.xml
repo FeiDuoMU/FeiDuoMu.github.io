@@ -104,35 +104,6 @@
     </item>
     
     <item>
-      <title>MYSQL篇</title>
-      <link>http://example.com/2023/java-ba-gu-mysql/</link>
-      <guid>http://example.com/2023/java-ba-gu-mysql/</guid>
-      <pubDate>Mon, 20 Mar 2023 16:00:00 GMT</pubDate>
-      
-      <description>&lt;h1 id=&quot;MySQL-的事务隔离级别有哪些？分别用于解决什么问题？&quot;&gt;&lt;a href=&quot;#MySQL-的事务隔离级别有哪些？分别用于解决什么问题？&quot; class=&quot;headerlink&quot; title=&quot;MySQL 的事务隔离级别有哪些？分别用于解决什么问题？&quot;&gt;&lt;/a&gt;MySQL 的事务隔离级别有哪些？分别用于解决什么问题？&lt;/h1&gt;&lt;p&gt;主要用于解决脏读、不可重复读、幻读。&lt;/p&gt;
-&lt;p&gt;脏读：一个事务读取到另一个事务还未提交的数据。&lt;/p&gt;
-&lt;p&gt;不可重复读：在一个事务中多次读取同一个数据时，结果出现不一致。&lt;/p&gt;
-&lt;p&gt;幻读：在一个事务中使用相同的 SQL 两次读取，第二次读取到了其他事务新插入的行。&lt;/p&gt;
-&lt;p&gt;不可重复读注重于数据的修改，而幻读注重于数据的插入。&lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="MySQL-的事务隔离级别有哪些？分别用于解决什么问题？"><a href="#MySQL-的事务隔离级别有哪些？分别用于解决什么问题？" class="headerlink" title="MySQL 的事务隔离级别有哪些？分别用于解决什么问题？"></a>MySQL 的事务隔离级别有哪些？分别用于解决什么问题？</h1><p>主要用于解决脏读、不可重复读、幻读。</p><p>脏读：一个事务读取到另一个事务还未提交的数据。</p><p>不可重复读：在一个事务中多次读取同一个数据时，结果出现不一致。</p><p>幻读：在一个事务中使用相同的 SQL 两次读取，第二次读取到了其他事务新插入的行。</p><p>不可重复读注重于数据的修改，而幻读注重于数据的插入。</p><span id="more"></span><table><thead><tr><th>隔离级别</th><th>脏读</th><th>不可重复读</th><th>幻读</th></tr></thead><tbody><tr><td>读未提交（Read Uncommitted）</td><td>有</td><td>有</td><td>有</td></tr><tr><td>读已提交（Read Committed）</td><td>无</td><td>有</td><td>有</td></tr><tr><td>可重复读（Repeatable Read）</td><td>无</td><td>无</td><td>有</td></tr><tr><td>串行化（Serializable）</td><td>无</td><td>无</td><td>无</td></tr></tbody></table><h1 id="MySQL-的可重复读怎么实现的？"><a href="#MySQL-的可重复读怎么实现的？" class="headerlink" title="MySQL 的可重复读怎么实现的？"></a>MySQL 的可重复读怎么实现的？</h1><p>使用 MVCC 实现的，即 Mutil-Version Concurrency Control，多版本并发控制。关于 MVCC，比较常见的说法如下，包括《高性能 MySQL》也是这么介绍的。</p><p>InnoDB 在每行记录后面保存两个隐藏的列，分别保存了数据行的创建版本号和删除版本号。每开始一个新的事务，系统版本号都会递增。事务开始时刻的版本号会作为事务的版本号，用来和查询到的每行记录的版本号对比。在可重复读级别下，MVCC是如何操作的：</p><p>SELECT：必须同时满足以下两个条件，才能查询到。1）只查版本号早于当前版本的数据行；2）行的删除版本要么未定义，要么大于当前事务版本号。</p><p>INSERT：为插入的每一行保存当前系统版本号作为创建版本号。</p><p>DELETE：为删除的每一行保存当前系统版本号作为删除版本号。</p><p>UPDATE：插入一条新数据，保存当前系统版本号作为创建版本号。同时保存当前系统版本号作为原来的数据行删除版本号。</p><p>MVCC 只作用于 RC（Read Committed）和 RR（Repeatable Read）级别，因为 RU（Read Uncommitted）总是读取最新的数据版本，而不是符合当前事务版本的数据行。而 Serializable 则会对所有读取的行都加锁。这两种级别都不需要 MVCC 的帮助。</p><h1 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h1><p>MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获取数据的数据结构。简单的理解，索引类似于字典里面的目录。</p><p>常见的索引类型有：hash、b树、b+树。</p><p>hash：底层就是 hash 表。进行查找时，根据 key 调用hash 函数获得对应的 hashcode，根据 hashcode 找到对应的数据行地址，根据地址拿到对应的数据。</p><p>B树：B树是一种多路搜索树，n 路搜索树代表每个节点最多有 n 个子节点。每个节点存储 key + 指向下一层节点的指针+ 指向 key 数据记录的地址。查找时，从根结点向下进行查找，直到找到对应的key。</p><p>B+树：B+树是b树的变种，主要区别在于：B+树的非叶子节点只存储 key + 指向下一层节点的指针。另外，B+树的叶子节点之间通过指针来连接，构成一个有序链表，因此对整棵树的遍历只需要一次线性遍历叶子结点即可。</p><h1 id="为什么MySQL数据库要用B-树存储索引？而不用红黑树、Hash、B树？"><a href="#为什么MySQL数据库要用B-树存储索引？而不用红黑树、Hash、B树？" class="headerlink" title="为什么MySQL数据库要用B+树存储索引？而不用红黑树、Hash、B树？"></a>为什么MySQL数据库要用B+树存储索引？而不用红黑树、Hash、B树？</h1><p>红黑树：如果在内存中，红黑树的查找效率比B树更高，但是涉及到磁盘操作，B树就更优了。因为红黑树是二叉树，数据量大时树的层数很高，从树的根结点向下寻找的过程，每读1个节点，都相当于一次IO操作，因此红黑树的I&#x2F;O操作会比B树多的多。</p><p>hash 索引：如果只查询单个值的话，hash 索引的效率非常高。但是 hash 索引有几个问题：</p><ol><li>不支持范围查询；</li><li>不支持索引值的排序操作；</li><li>不支持联合索引的最左匹配规则。</li></ol><p>B树索引：B树索相比于B+树，在进行范围查询时，需要做局部的中序遍历，可能要跨层访问，跨层访问代表着要进行额外的磁盘I&#x2F;O操作；另外，B树的非叶子节点存放了数据记录的地址，会导致存放的节点更少，树的层数变高。</p><h1 id="MySQL-中的索引叶子节点存放的是什么？"><a href="#MySQL-中的索引叶子节点存放的是什么？" class="headerlink" title="MySQL 中的索引叶子节点存放的是什么？"></a>MySQL 中的索引叶子节点存放的是什么？</h1><p>MyISAM和InnoDB都是采用的B+树作为索引结构，但是叶子节点的存储上有些不同。</p><p>MyISAM：主键索引和辅助索引（普通索引）的叶子节点都是存放 key 和 key 对应数据行的地址。在MyISAM 中，主键索引和辅助索引没有任何区别。</p><p>InnoDB：主键索引存放的是 key 和 key 对应的数据行。辅助索引存放的是 key 和 key 对应的主键值。因此在使用辅助索引时，通常需要检索两次索引，首先检索辅助索引获得主键值，然后用主键值到主键索引中检索获得记录。</p><h1 id="什么是聚簇索引（聚集索引）？"><a href="#什么是聚簇索引（聚集索引）？" class="headerlink" title="什么是聚簇索引（聚集索引）？"></a>什么是聚簇索引（聚集索引）？</h1><p>聚簇索引并不是一种单独的索引类型，而是一种数据存储方式。聚簇索引将索引和数据行放到了一块，找到索引也就找到了数据。因为无需进行回表操作，所以效率很高。</p><p>InnoDB 中必然会有，且只会有一个聚簇索引。通常是主键，如果没有主键，则优先选择非空的唯一索引，如果唯一索引也没有，则会创建一个隐藏的row_id 作为聚簇索引。至于为啥会只有一个聚簇索引，其实很简单，因为我们的数据只会存储一份。</p><p>而非聚簇索引则将数据存储和索引分开，找到索引后，需要通过对应的地址找到对应的数据行。MyISAM 的索引方式就是非聚簇索引。</p><h1 id="什么是回表查询？"><a href="#什么是回表查询？" class="headerlink" title="什么是回表查询？"></a>什么是回表查询？</h1><p>InnoDB 中，对于主键索引，只需要走一遍主键索引的查询就能在叶子节点拿到数据。</p><p>而对于普通索引，叶子节点存储的是 key + 主键值，因此需要再走一次主键索引，通过主键索引找到行记录，这就是所谓的回表查询，先定位主键值，再定位行记录。</p><h1 id="走普通索引，一定会出现回表查询吗？"><a href="#走普通索引，一定会出现回表查询吗？" class="headerlink" title="走普通索引，一定会出现回表查询吗？"></a>走普通索引，一定会出现回表查询吗？</h1><p>不一定，如果查询语句所要求的字段全部命中了索引，那么就不必再进行回表查询。</p><p>很容易理解，有一个 user 表，主键为 id，name 为普通索引，则再执行：select id, name from user where name &#x3D; ‘joonwhee’ 时，通过name 的索引就能拿到 id 和 name了，因此无需再回表去查数据行了。</p><h1 id="什么是覆盖索引（索引覆盖）吗？"><a href="#什么是覆盖索引（索引覆盖）吗？" class="headerlink" title="什么是覆盖索引（索引覆盖）吗？"></a>什么是覆盖索引（索引覆盖）吗？</h1><p>覆盖索引是 SQL-Server 中的一种说法，上面讲的例子其实就实现了覆盖索引。具体的：当索引上包含了查询语句中的所有列时，我们无需进行回表查询就能拿到所有的请求数据，因此速度会很快。</p>]]></content:encoded>
-      
-      
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
-      
-      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1/">面试八股</category>
-      
-      
-      <category domain="http://example.com/tags/Java/">Java</category>
-      
-      
-      <comments>http://example.com/2023/java-ba-gu-mysql/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>线程池篇</title>
       <link>http://example.com/2023/java-ba-gu-xian-cheng-chi/</link>
       <guid>http://example.com/2023/java-ba-gu-xian-cheng-chi/</guid>
@@ -160,6 +131,35 @@
       
       
       <comments>http://example.com/2023/java-ba-gu-xian-cheng-chi/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MYSQL篇</title>
+      <link>http://example.com/2023/java-ba-gu-mysql/</link>
+      <guid>http://example.com/2023/java-ba-gu-mysql/</guid>
+      <pubDate>Mon, 20 Mar 2023 16:00:00 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;MySQL-的事务隔离级别有哪些？分别用于解决什么问题？&quot;&gt;&lt;a href=&quot;#MySQL-的事务隔离级别有哪些？分别用于解决什么问题？&quot; class=&quot;headerlink&quot; title=&quot;MySQL 的事务隔离级别有哪些？分别用于解决什么问题？&quot;&gt;&lt;/a&gt;MySQL 的事务隔离级别有哪些？分别用于解决什么问题？&lt;/h1&gt;&lt;p&gt;主要用于解决脏读、不可重复读、幻读。&lt;/p&gt;
+&lt;p&gt;脏读：一个事务读取到另一个事务还未提交的数据。&lt;/p&gt;
+&lt;p&gt;不可重复读：在一个事务中多次读取同一个数据时，结果出现不一致。&lt;/p&gt;
+&lt;p&gt;幻读：在一个事务中使用相同的 SQL 两次读取，第二次读取到了其他事务新插入的行。&lt;/p&gt;
+&lt;p&gt;不可重复读注重于数据的修改，而幻读注重于数据的插入。&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="MySQL-的事务隔离级别有哪些？分别用于解决什么问题？"><a href="#MySQL-的事务隔离级别有哪些？分别用于解决什么问题？" class="headerlink" title="MySQL 的事务隔离级别有哪些？分别用于解决什么问题？"></a>MySQL 的事务隔离级别有哪些？分别用于解决什么问题？</h1><p>主要用于解决脏读、不可重复读、幻读。</p><p>脏读：一个事务读取到另一个事务还未提交的数据。</p><p>不可重复读：在一个事务中多次读取同一个数据时，结果出现不一致。</p><p>幻读：在一个事务中使用相同的 SQL 两次读取，第二次读取到了其他事务新插入的行。</p><p>不可重复读注重于数据的修改，而幻读注重于数据的插入。</p><span id="more"></span><table><thead><tr><th>隔离级别</th><th>脏读</th><th>不可重复读</th><th>幻读</th></tr></thead><tbody><tr><td>读未提交（Read Uncommitted）</td><td>有</td><td>有</td><td>有</td></tr><tr><td>读已提交（Read Committed）</td><td>无</td><td>有</td><td>有</td></tr><tr><td>可重复读（Repeatable Read）</td><td>无</td><td>无</td><td>有</td></tr><tr><td>串行化（Serializable）</td><td>无</td><td>无</td><td>无</td></tr></tbody></table><h1 id="MySQL-的可重复读怎么实现的？"><a href="#MySQL-的可重复读怎么实现的？" class="headerlink" title="MySQL 的可重复读怎么实现的？"></a>MySQL 的可重复读怎么实现的？</h1><p>使用 MVCC 实现的，即 Mutil-Version Concurrency Control，多版本并发控制。关于 MVCC，比较常见的说法如下，包括《高性能 MySQL》也是这么介绍的。</p><p>InnoDB 在每行记录后面保存两个隐藏的列，分别保存了数据行的创建版本号和删除版本号。每开始一个新的事务，系统版本号都会递增。事务开始时刻的版本号会作为事务的版本号，用来和查询到的每行记录的版本号对比。在可重复读级别下，MVCC是如何操作的：</p><p>SELECT：必须同时满足以下两个条件，才能查询到。1）只查版本号早于当前版本的数据行；2）行的删除版本要么未定义，要么大于当前事务版本号。</p><p>INSERT：为插入的每一行保存当前系统版本号作为创建版本号。</p><p>DELETE：为删除的每一行保存当前系统版本号作为删除版本号。</p><p>UPDATE：插入一条新数据，保存当前系统版本号作为创建版本号。同时保存当前系统版本号作为原来的数据行删除版本号。</p><p>MVCC 只作用于 RC（Read Committed）和 RR（Repeatable Read）级别，因为 RU（Read Uncommitted）总是读取最新的数据版本，而不是符合当前事务版本的数据行。而 Serializable 则会对所有读取的行都加锁。这两种级别都不需要 MVCC 的帮助。</p><h1 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h1><p>MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获取数据的数据结构。简单的理解，索引类似于字典里面的目录。</p><p>常见的索引类型有：hash、b树、b+树。</p><p>hash：底层就是 hash 表。进行查找时，根据 key 调用hash 函数获得对应的 hashcode，根据 hashcode 找到对应的数据行地址，根据地址拿到对应的数据。</p><p>B树：B树是一种多路搜索树，n 路搜索树代表每个节点最多有 n 个子节点。每个节点存储 key + 指向下一层节点的指针+ 指向 key 数据记录的地址。查找时，从根结点向下进行查找，直到找到对应的key。</p><p>B+树：B+树是b树的变种，主要区别在于：B+树的非叶子节点只存储 key + 指向下一层节点的指针。另外，B+树的叶子节点之间通过指针来连接，构成一个有序链表，因此对整棵树的遍历只需要一次线性遍历叶子结点即可。</p><h1 id="为什么MySQL数据库要用B-树存储索引？而不用红黑树、Hash、B树？"><a href="#为什么MySQL数据库要用B-树存储索引？而不用红黑树、Hash、B树？" class="headerlink" title="为什么MySQL数据库要用B+树存储索引？而不用红黑树、Hash、B树？"></a>为什么MySQL数据库要用B+树存储索引？而不用红黑树、Hash、B树？</h1><p>红黑树：如果在内存中，红黑树的查找效率比B树更高，但是涉及到磁盘操作，B树就更优了。因为红黑树是二叉树，数据量大时树的层数很高，从树的根结点向下寻找的过程，每读1个节点，都相当于一次IO操作，因此红黑树的I&#x2F;O操作会比B树多的多。</p><p>hash 索引：如果只查询单个值的话，hash 索引的效率非常高。但是 hash 索引有几个问题：</p><ol><li>不支持范围查询；</li><li>不支持索引值的排序操作；</li><li>不支持联合索引的最左匹配规则。</li></ol><p>B树索引：B树索相比于B+树，在进行范围查询时，需要做局部的中序遍历，可能要跨层访问，跨层访问代表着要进行额外的磁盘I&#x2F;O操作；另外，B树的非叶子节点存放了数据记录的地址，会导致存放的节点更少，树的层数变高。</p><h1 id="MySQL-中的索引叶子节点存放的是什么？"><a href="#MySQL-中的索引叶子节点存放的是什么？" class="headerlink" title="MySQL 中的索引叶子节点存放的是什么？"></a>MySQL 中的索引叶子节点存放的是什么？</h1><p>MyISAM和InnoDB都是采用的B+树作为索引结构，但是叶子节点的存储上有些不同。</p><p>MyISAM：主键索引和辅助索引（普通索引）的叶子节点都是存放 key 和 key 对应数据行的地址。在MyISAM 中，主键索引和辅助索引没有任何区别。</p><p>InnoDB：主键索引存放的是 key 和 key 对应的数据行。辅助索引存放的是 key 和 key 对应的主键值。因此在使用辅助索引时，通常需要检索两次索引，首先检索辅助索引获得主键值，然后用主键值到主键索引中检索获得记录。</p><h1 id="什么是聚簇索引（聚集索引）？"><a href="#什么是聚簇索引（聚集索引）？" class="headerlink" title="什么是聚簇索引（聚集索引）？"></a>什么是聚簇索引（聚集索引）？</h1><p>聚簇索引并不是一种单独的索引类型，而是一种数据存储方式。聚簇索引将索引和数据行放到了一块，找到索引也就找到了数据。因为无需进行回表操作，所以效率很高。</p><p>InnoDB 中必然会有，且只会有一个聚簇索引。通常是主键，如果没有主键，则优先选择非空的唯一索引，如果唯一索引也没有，则会创建一个隐藏的row_id 作为聚簇索引。至于为啥会只有一个聚簇索引，其实很简单，因为我们的数据只会存储一份。</p><p>而非聚簇索引则将数据存储和索引分开，找到索引后，需要通过对应的地址找到对应的数据行。MyISAM 的索引方式就是非聚簇索引。</p><h1 id="什么是回表查询？"><a href="#什么是回表查询？" class="headerlink" title="什么是回表查询？"></a>什么是回表查询？</h1><p>InnoDB 中，对于主键索引，只需要走一遍主键索引的查询就能在叶子节点拿到数据。</p><p>而对于普通索引，叶子节点存储的是 key + 主键值，因此需要再走一次主键索引，通过主键索引找到行记录，这就是所谓的回表查询，先定位主键值，再定位行记录。</p><h1 id="走普通索引，一定会出现回表查询吗？"><a href="#走普通索引，一定会出现回表查询吗？" class="headerlink" title="走普通索引，一定会出现回表查询吗？"></a>走普通索引，一定会出现回表查询吗？</h1><p>不一定，如果查询语句所要求的字段全部命中了索引，那么就不必再进行回表查询。</p><p>很容易理解，有一个 user 表，主键为 id，name 为普通索引，则再执行：select id, name from user where name &#x3D; ‘joonwhee’ 时，通过name 的索引就能拿到 id 和 name了，因此无需再回表去查数据行了。</p><h1 id="什么是覆盖索引（索引覆盖）吗？"><a href="#什么是覆盖索引（索引覆盖）吗？" class="headerlink" title="什么是覆盖索引（索引覆盖）吗？"></a>什么是覆盖索引（索引覆盖）吗？</h1><p>覆盖索引是 SQL-Server 中的一种说法，上面讲的例子其实就实现了覆盖索引。具体的：当索引上包含了查询语句中的所有列时，我们无需进行回表查询就能拿到所有的请求数据，因此速度会很快。</p>]]></content:encoded>
+      
+      
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/">笔记</category>
+      
+      <category domain="http://example.com/categories/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1/">面试八股</category>
+      
+      
+      <category domain="http://example.com/tags/Java/">Java</category>
+      
+      
+      <comments>http://example.com/2023/java-ba-gu-mysql/#disqus_thread</comments>
       
     </item>
     

@@ -1166,7 +1166,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff81;
+  background: #ff8a61;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2447,4 +2447,11 @@ pre {
 code,
 pre {
   border: 1px solid #d6d6d6;
+}
+body {
+  background: url("https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/HBnv.png");
+  background-size: 96% 90%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 100% 50%;
 }
