@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border:2px solid #a1a1a1;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: underline wavy black;//�»�����ɫ
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: opacity(0%);//ֵΪ0%������ȫ͸��
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 15px;
+    font-family: "SimHei", Times,serif;
+    font-weight: bold;
+    line-height: 1.2;
+    color: green;//������ɫ
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}</style><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这本书原来是我的，这世界上原来还有属于我的东西——说起来平淡无奇，但我确实没想到。   王小波（1952年5月13日—1997年4月11日），男，中国当代学者、作家。代表作品有《黄金时代》《白银时代》《青铜时代》《黑铁时代》等。    王小波与李银河">
+<meta property="og:type" content="article">
+<meta property="og:title" content="王小波">
+<meta property="og:url" content="http://example.com/2022/wxiaobo/index.html">
+<meta property="og:site_name" content="蕩漾">
+<meta property="og:description" content="这本书原来是我的，这世界上原来还有属于我的东西——说起来平淡无奇，但我确实没想到。   王小波（1952年5月13日—1997年4月11日），男，中国当代学者、作家。代表作品有《黄金时代》《白银时代》《青铜时代》《黑铁时代》等。    王小波与李银河">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Video/%E7%8E%8B%E5%B0%8F%E6%B3%A2.jpeg">
+<meta property="article:published_time" content="2022-01-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-04T05:17:20.963Z">
+<meta property="article:author" content="羽生绯木">
+<meta property="article:tag" content="王小波">
+<meta property="article:tag" content="阅读清单">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Video/%E7%8E%8B%E5%B0%8F%E6%B3%A2.jpeg">
+
+<link rel="canonical" href="http://example.com/2022/wxiaobo/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>王小波 | 蕩漾</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="蕩漾" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蕩漾</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">爱欲之人犹如执炬逆行，必有灼手之患</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-book fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>存檔</a>
+
+  </li>
+        <li class="menu-item menu-item-feimu">
+
+    <a href="/feimu/" rel="section"><i class="fab fa-instagram fa-fw"></i>绯木</a>
+
+  </li>
+        <li class="menu-item menu-item-bilibil">
+
+    <a href="/bilibil/" rel="section"><i class="fab fa-youtube fa-fw"></i>追番</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>検索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/wxiaobo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="羽生绯木">
+      <meta itemprop="description" content="恍不觉梦,流离之人,追逐幻影,弃友弃人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蕩漾">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          王小波
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-12 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-12T00:00:00+08:00">2022-01-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+
+        </div>
+      </header>
+
+
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr><blockquote class="blockquote-center"><p>  这本书原来是我的，这世界上原来还有属于我的东西——说起来平淡无奇，但我确实没想到。</p></blockquote><hr>
+
+
+<p>王小波<em>（1952年5月13日—1997年4月11日）</em>，男，中国当代学者、作家。代表作品有《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%BB%84%E9%87%91%E6%97%B6%E4%BB%A3/13130552?fromModule=lemma_inlink">黄金时代</a>》《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%99%BD%E9%93%B6%E6%97%B6%E4%BB%A3/25278?fromModule=lemma_inlink">白银时代</a>》《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%9D%92%E9%93%9C%E6%97%B6%E4%BB%A3/9023087?fromModule=lemma_inlink">青铜时代</a>》《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%BB%91%E9%93%81%E6%97%B6%E4%BB%A3/1645748?fromModule=lemma_inlink">黑铁时代</a>》等。 </p>
+<img src="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Video/%E7%8E%8B%E5%B0%8F%E6%B3%A2.jpeg"  style="zoom: 66%;" />
+
+<center><font align="center" color=gray size=2>王小波与李银河</font></center>
+
+<span id="more"></span>
+
+<p>生于北京，先后当过知青、民办教师、工人。1978年考入中国人民大学，1980年王小波与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9D%8E%E9%93%B6%E6%B2%B3/648256?fromModule=lemma_inlink">李银河</a>结婚，同年发表处女作《地久天长》。1984年赴美匹兹堡大学东亚研究中心求学，2年后获得硕士学位。在美留学期间，游历了美国各地，并利用1986年暑假游历了西欧诸国。1988年回国，先后在北京大学，中国人民大学任教。1992年9月辞去教职，做自由撰稿人。他的唯一一部电影剧本《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%9C%E5%AE%AB%E8%A5%BF%E5%AE%AB/2540476?fromModule=lemma_inlink">东宫西宫</a>》获阿根廷国际电影节<strong>最佳编剧奖</strong>，使王小波成为在国际电影节为中国取得最佳编剧奖的第一人，并且入围1997年戛纳国际电影节。1997年4月11日病逝于北京，年仅45岁。</p>
+<div class="douban-card-block">
+    <a class="douban-card" target="_blank" rel="noopener" href="https://movie.douban.com/subject/1304609">
+        <div bg-lazy class="douban-card-bgimg" style="background-image: url('https://images.weserv.nl/?url=https://img9.doubanio.com/view/photo/s_ratio_poster/public/p944507896.jpg');"></div>
+        <div class="douban-card-left">
+            <div bg-lazy class="douban-card-img" style="background-image: url('https://images.weserv.nl/?url=https://img9.doubanio.com/view/photo/s_ratio_poster/public/p944507896.jpg');"></div>
+            <div class="douban-card-status">灯影绰约</div>
+        </div>
+        <div class="douban-card-right">
+            <div class="douban-card-item"><span>电影名: </span><strong>东宫西宫東宮西宮(1996)</strong></div>
+            <div class="douban-card-item"><span>导演: </span><span>张元</span></div>
+            <div class="douban-card-item"><span>主演: </span><span>司汗/胡军</span></div>
+            <div class="douban-card-item"><span>上映时间: </span><span>1996-11(马德普拉塔电影节)</span></div>
+            <div class="douban-card-item"><span>评分: </span><span>6.8</span></div>
+        </div>
+    </a>
+</div>
+
+<p>1977年，二十五岁的王小波与在《光明日报》做编辑的李银河相识并恋爱。当时在王小波朋友圈中传阅的小说手稿《绿毛水怪》是二人相识的契机。相识以后，他们开始了书信往来。</p>
+<div class="douban-card-block">
+    <a class="douban-card" target="_blank" rel="noopener" href="https://book.douban.com/subject/30163860">
+        <div bg-lazy class="douban-card-bgimg" style="background-image: url('https://images.weserv.nl/?url=https://img1.doubanio.com/view/subject/s/public/s29774838.jpg');">
+        </div>
+        <div class="douban-card-left">
+            <div bg-lazy class="douban-card-img" style="background-image: url('https://images.weserv.nl/?url=https://img1.doubanio.com/view/subject/s/public/s29774838.jpg');">
+            </div>
+            <div class="douban-card-status">见字如晤</div>
+        </div>
+        <div class="douban-card-right" style="line-height: 1.7;">
+            <div class="douban-card-item"><span>书名: </span><strong>绿毛水怪</strong></div>
+            <div class="douban-card-item"><span>作者: </span><span>王小波</span></div>
+            <div class="douban-card-item"><span>出版年份: </span><span>2018-6</span></div>
+            <div class="douban-card-item"><span>评分: </span><span>9.1</span></div>
+        </div>
+    </a>
+</div>
+
+<p>1980年1月21日，王小波和李银河登记结婚，因为那时王小波28岁，正在大学读二年级，学生有规定不准结婚，所以结婚是秘密的。没拍结婚照，也没婚礼，两家各请了一桌，不注重形式。王小波和李银河没有孩子，他们结婚前就商量好，两人的世界就已经很丰富很有趣了，不像有些夫妻需要孩子作为纽带。</p>
+<h4 id="代表作品"><a href="#代表作品" class="headerlink" title="代表作品"></a>代表作品</h4><p>1980年9月　《唐人秘传故事》　山东文艺出版社。</p>
+<p>1992年3月　《王二风流史》　香港繁荣出版社。</p>
+<p>1992年8月　《黄金时代》　台湾联经出版社。</p>
+<p>1992年1月　《他们的世界——中国男同性恋群落透视》与李银河合著。香港天地图书公司。</p>
+<p>1994年7月　《黄金时代》　华夏出版社。</p>
+<p>1995年7月　《未来世界》　台湾联经出版社。</p>
+<p>1996年11月　《思维的乐趣》　北岳文艺出版社。</p>
+<p>1997年5月　《时代三部曲》包括《黄金时代》、《白银时代》、《青铜时代》三部小说集　花城出版社。出版于他逝世之后，当年曾引起轰动。</p>
+<p>1997年5月　《我的精神家园》　文化艺术出版社。</p>
+<p>1997年10月　《沉默的大多数》　中国青年出版社。</p>
+<p>1998年2月　《黑铁时代》　时代文艺出版社。</p>
+<p>1998年2月　《地久天长》　时代文艺出版社。</p>
+<p>1999年2月，《黄金时代》（上、下）、《白银时代》、《青铜时代》（上、中、下）由台湾风云时代出版公司出版；4月，《王小波文存》由中国青年出版社出版。</p>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:left;color: #808080;font-size:15px;">-EOF-</div>
+    
+</div>
+
+      </div>
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%8E%8B%E5%B0%8F%E6%B3%A2/" rel="tag"># 王小波</a>
+              <a href="/tags/%E9%98%85%E8%AF%BB%E6%B8%85%E5%8D%95/" rel="tag"># 阅读清单</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/hello-world/" rel="prev" title="戦場ヶ原">
+      <i class="fa fa-chevron-left"></i> 戦場ヶ原
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/java-io-liu/" rel="next" title="Java---IO流">
+      Java---IO流 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E8%A1%A8%E4%BD%9C%E5%93%81"><span class="nav-number">1.</span> <span class="nav-text">代表作品</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a href="/">
+    <img class="site-author-image" itemprop="image" alt="羽生绯木"
+      src="/images/avatar.gif">
+   </a>
+  <p class="site-author-name" itemprop="name">羽生绯木</p>
+  <div class="site-description" itemprop="description">恍不觉梦,流离之人,追逐幻影,弃友弃人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+
+    <!-- 分类标签-->
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/341146674" title="bilibil" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>bilibil</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/woinrd" title="GitHub" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=475394667" title="Music" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Music</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3078500256@qq.com" title="E-Mail" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      怪异！
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://zh.moegirl.org.cn/%E7%89%A9%E8%AF%AD%E7%B3%BB%E5%88%97" title="物语介绍" rel="noopener" target="_blank">物语介绍</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/290451282" title="物语拜年祭" rel="noopener" target="_blank">物语拜年祭</a>
+        </li>
+    </ul>
+  </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">羽生绯木</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!--
+     <span id="busuanzi_container_site_pv">访客次数<span id="busuanzi_value_site_pv"></span>次</span>
+     <span class="post-meta-divider">|</span>-->
+    <!--<span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>-->
+    <!--<span class="post-meta-divider">|</span>-->
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset);
+            clearInterval(int);
+        }
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据
+            clearInterval(int); // 停止检测
+        }
+    }
+
+});
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

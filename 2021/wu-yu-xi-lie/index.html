@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border:2px solid #a1a1a1;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: underline wavy black;//�»�����ɫ
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: opacity(0%);//ֵΪ0%������ȫ͸��
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 15px;
+    font-family: "SimHei", Times,serif;
+    font-weight: bold;
+    line-height: 1.2;
+    color: green;//������ɫ
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}</style><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;物语系列是同一世界背景、同一思想主题下多主角多中心的长篇小说集，担任过第一视角的包括阿良良木曆、羽川翼、神原骏河、千石抚子等。不同叙述者下的作品风格常呈现出显著差异。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物語系列">
+<meta property="og:url" content="http://example.com/2021/wu-yu-xi-lie/index.html">
+<meta property="og:site_name" content="蕩漾">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;物语系列是同一世界背景、同一思想主题下多主角多中心的长篇小说集，担任过第一视角的包括阿良良木曆、羽川翼、神原骏河、千石抚子等。不同叙述者下的作品风格常呈现出显著差异。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/My.jpg">
+<meta property="article:published_time" content="2021-11-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-05-22T07:14:01.515Z">
+<meta property="article:author" content="羽生绯木">
+<meta property="article:tag" content="物語">
+<meta property="article:tag" content="アニメ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/My.jpg">
+
+<link rel="canonical" href="http://example.com/2021/wu-yu-xi-lie/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>物語系列 | 蕩漾</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="蕩漾" type="application/rss+xml">
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蕩漾</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">爱欲之人犹如执炬逆行，必有灼手之患</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-book fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>存檔</a>
+
+  </li>
+        <li class="menu-item menu-item-feimu">
+
+    <a href="/feimu/" rel="section"><i class="fab fa-instagram fa-fw"></i>绯木</a>
+
+  </li>
+        <li class="menu-item menu-item-bilibil">
+
+    <a href="/bilibil/" rel="section"><i class="fab fa-youtube fa-fw"></i>追番</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>検索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/wu-yu-xi-lie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="羽生绯木">
+      <meta itemprop="description" content="恍不觉梦,流离之人,追逐幻影,弃友弃人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蕩漾">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          物語系列
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-12T00:00:00+08:00">2021-11-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8A%A8%E6%BC%AB/" itemprop="url" rel="index"><span itemprop="name">动漫</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8A%A8%E6%BC%AB/%E7%89%A9%E8%AA%9E%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/" itemprop="url" rel="index"><span itemprop="name">物語シリーズ</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+
+        </div>
+      </header>
+
+
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <td>&ensp;&ensp;&ensp;&ensp;&ensp;</td>物语系列是同一世界背景、同一思想主题下多主角多中心的长篇小说集，担任过第一视角的包括阿良良木曆、羽川翼、神原骏河、千石抚子等。不同叙述者下的作品风格常呈现出显著差异。
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 50%;">
+    <img  src="https://fmphoto.oss-cn-chengdu.aliyuncs.com/Photo/My.jpg" />
+</div>
+
+<span id="more"></span>
+
+<p>物語系列的动画系列全部由<a target="_blank" rel="noopener" href="https://zh.moegirl.org.cn/SHAFT">SHAFT</a>制作，<a target="_blank" rel="noopener" href="https://zh.moegirl.org.cn/%E6%96%B0%E6%88%BF%E6%98%AD%E4%B9%8B">新房昭之</a>担任监督或总监督，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B8%A1%E8%BE%B9%E6%98%8E%E5%A4%AB/438126">渡邊明夫</a>负责人设，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A5%9E%E5%89%8D%E6%99%93/7037499">神前曉</a>负责09至13年及《曆物語》《傷物語》的音乐（其余为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BE%BD%E5%86%88%E4%BD%B3/306455">羽岡佳</a>），系列构成全部以「<a target="_blank" rel="noopener" href="https://zh.moegirl.org.cn/index.php?title=%E4%B8%9C%E5%AF%8C%E8%80%B6%E5%AD%90&action=edit&redlink=1">東富耶子</a>、<a target="_blank" rel="noopener" href="https://zh.moegirl.org.cn/%E6%96%B0%E6%88%BF%E6%98%AD%E4%B9%8B">新房昭之</a>」名义。</p>
+
+    <div id="aplayer-vmkCUhRA" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="7285295969" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="100px" data-preload=" auto" data-theme="#555" data-order=" list" data-loop=" all"
+    ></div>
+
+<h3 id="人物介绍"><a href="#人物介绍" class="headerlink" title="人物介绍"></a>人物介绍</h3><p>物语系列的主要人物有很多，我就介绍一些比较重要的吧。</p>
+<ul>
+<li><p><del>阿垃垃圾君</del>阿良良木历：故事的男主角，高中生，曾经被吸血鬼咬过而变成半吸血鬼，后来恢复了人类的身份，但仍保留了一些特殊能力。他善良但有时伪善，经常卷入各种怪异事件中，帮助身边的女孩解决问题。他的女朋友是战场原黑仪。</p>
+</li>
+<li><p>战场原黑仪：故事的女主角之一，历的同班同学兼女友，个性暴力而直率，曾经因为体重过轻而被称为“荡漾”。她的身体里寄居着一个名为“蟹”的怪异，可以改变她的体重。她和历相爱，但也经常打架。她是羽川翼的好友²³。</p>
+</li>
+<li><p>羽川翼：故事的女主角之一，历的班长，品行端正、成绩优秀、性格认真、知识渊博，是“班长中的班长”。她曾经暗恋历，但被拒绝后仍然和他保持友谊。她的身体里寄居着一个名为“猫”的怪异，可以让她变成黑发白眼的“黑羽川”，或者变成拥有虎纹头发和虎爪的“苛虎”。她和战场原黑仪是好友¹²³。</p>
+</li>
+<li><p>八九寺真宵：故事的女主角之一，历的妹妹级人物，个性活泼可爱，喜欢说谎和捉弄人。她曾经因为家庭问题而变成了一个不可见的“蜗牛”，后来被历发现并帮助。她和历有着特殊的羁绊，可以通过电话联系到他。她和忍野忍是好朋友²³。</p>
+</li>
+<li><p>神原骏河：故事的女主角之一，历的同校同学，个性强势而自信，擅长运动和打架。她曾经因为厌恶自己的女性身份而被一个名为“猴子”的怪异附身，后来被历制服并接受了自己。她对历有着好感，但也尊重他和黑仪的关系。她和千石抚子是表姐妹²³。</p>
+</li>
+<li><p>千石抚子：故事的女主角之一，历的学妹，个性冷淡而高傲，擅长使用诅咒物品。她曾经因为被欺负而用蛇切绳诅咒同学，后来被历发现并帮助。她对历有着好感，但也尊重他和黑仪的关系。她和神原骏河是表姐妹²³。</p>
+</li>
+<li><p>刃下心：故事的重要人物，一个拥有金色眼睛和金色头发的吸血鬼，是历的主人。她曾经是吸血鬼界的王者，拥有无与伦比的力量和美貌，但在遇到历之前，她被三位吸血鬼猎人攻击并剥夺了肢体。她被历救活后，将历变成了自己的眷属，并与历一起收回了肢体。她对历有着深厚的感情，但也尊重他和黑仪的关系。她的真名是姬丝秀忒</p>
+</li>
+<li><p>阿良良木火怜：故事的女主角之一，历的妹妹，个性活泼而任性，喜欢和历玩耍和撒娇。她曾经因为不满历和黑仪的关系而被一个名为“蜂”的怪异附身，后来被历和黑仪帮助。她对历有着兄妹之外的感情，但也尊重他和黑仪的关系。她和阿良良木月火是双胞胎姐妹</p>
+</li>
+<li><p>阿良良木月火：故事的女主角之一，历的妹妹，个性冷静而理智，喜欢读书和学习。她曾经因为不满历和黑仪的关系而被一个名为“凤”的怪异附身，后来被历和黑仪帮助。她对历有着兄妹之外的感情，但也尊重他和黑仪的关系。她和阿良良木火怜是双胞胎姐妹</p>
+</li>
+</ul>
+<p>　　</p>
+<p>　　　</p>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+        <div>
+    
+        <div style="text-align:left;color: #808080;font-size:15px;">-EOF-</div>
+    
+</div>
+
+      </div>
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%89%A9%E8%AA%9E/" rel="tag"># 物語</a>
+              <a href="/tags/%E3%82%A2%E3%83%8B%E3%83%A1/" rel="tag"># アニメ</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/hexo/" rel="prev" title="我与我">
+      <i class="fa fa-chevron-left"></i> 我与我
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/hello-world/" rel="next" title="戦場ヶ原">
+      戦場ヶ原 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E7%89%A9%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">人物介绍</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a href="/">
+    <img class="site-author-image" itemprop="image" alt="羽生绯木"
+      src="/images/avatar.gif">
+   </a>
+  <p class="site-author-name" itemprop="name">羽生绯木</p>
+  <div class="site-description" itemprop="description">恍不觉梦,流离之人,追逐幻影,弃友弃人</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+
+    <!-- 分类标签-->
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/341146674" title="bilibil" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>bilibil</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/woinrd" title="GitHub" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=475394667" title="Music" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Music</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3078500256@qq.com" title="E-Mail" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      怪异！
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://zh.moegirl.org.cn/%E7%89%A9%E8%AF%AD%E7%B3%BB%E5%88%97" title="物语介绍" rel="noopener" target="_blank">物语介绍</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/290451282" title="物语拜年祭" rel="noopener" target="_blank">物语拜年祭</a>
+        </li>
+    </ul>
+  </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">羽生绯木</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!--
+     <span id="busuanzi_container_site_pv">访客次数<span id="busuanzi_value_site_pv"></span>次</span>
+     <span class="post-meta-divider">|</span>-->
+    <!--<span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>-->
+    <!--<span class="post-meta-divider">|</span>-->
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset);
+            clearInterval(int);
+        }
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据
+            clearInterval(int); // 停止检测
+        }
+    }
+
+});
+</script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
